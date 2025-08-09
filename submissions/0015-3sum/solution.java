@@ -1,45 +1,33 @@
-import java.util.*;
 class Solution {
-    public List<List<Integer>> threeSum(int[] nums){
-         List<List<Integer>> result = new ArrayList<>();
-         Arrays.sort(nums);
-         int n = nums.length;
-         for(int i = 0; i< n-2; i++){
-            if (i > 0 && nums[i] == nums[i-1]){
-                continue;
-            }
-            int left = i+1;
-            int right = n-1;
-            while(left < right ){
-                int sum = nums[i] + nums[left] + nums[right];
-                if (sum == 0){
-                    result.add(Arrays.asList(nums[i],nums[left],nums[right]));
-                    while(left<right && nums[left] == nums[left+1]){
-                        left++;
+    public List<List<Integer>> threeSum(int[] nums) {
+        List<List<Integer>> result = new ArrayList<>();
+        Arrays.sort(nums);
+        for (int i = 0 ; i < nums.length -2 ;i++){
+            if (i > 0 && nums[i] == nums[i - 1]) continue; // Skip duplicate nums[i]
+            int l = i + 1;
+            int r = nums.length - 1;
+            while (l < r){
+                int sum = nums[l] + nums[r]  + nums[i];
+                if ( sum == 0){
+                    result.add(Arrays.asList(nums[i],nums[l],nums[r]));
+                    while(l < r && nums[l] == nums[l +1]){
+                        l++;
                     }
-                    while(left < right && nums[right] == nums[right-1]){
-                        right--;
+                    while(l<r && nums[r-1] == nums[r]){
+                        r--;
                     }
-                    left++;
-                    right--;
+                    l++;// ssince once the sum is zero for same i and r we cant get sum 0 by change in l only to resist the change r also need to b decreased.
+                    r--;
                 }
-                else if (sum<0){
-                    left++;
+                else if (sum < 0){
+                    l++;
                 }
-                else {
-                    right--;
+                else{
+                    r--;
                 }
-            }
-
-
-        } 
+            } 
+        }
         return result;
-    }
-    public static void main(String args[]){
-        int nums[] = {-1,0,1,2,-1,-4};
-        Solution Obj = new Solution();
-        List<List<Integer>> obj = Obj.threeSum(nums);
-        System.out.print(obj);
 
     }
 }
