@@ -1,32 +1,27 @@
 class Solution {
     public boolean check(int[] nums) {
-        int n = nums.length;
-
-        int[] checksorted = new int[n];
-        for (int rotationoffset = 0; rotationoffset < n ;++rotationoffset){
-            int currindex  = 0;
-            for (int index = rotationoffset; index <n; ++index){
-                checksorted[currindex++] = nums[index];
-
-            }
-            for (int index = 0; index < rotationoffset; ++index){
-                checksorted[currindex++] = nums[index];
-            }
-            boolean isSorted = true;
-            for (int index = 0; index < n-1; ++index){
-                if(checksorted[index]> checksorted[index+1]){
-                    isSorted = false;
-                    break;
+        if ( nums[0] < nums[nums.length-1]){
+            for ( int i = 1; i < nums.length; i++){
+                if (nums[i] < nums[i - 1]){
+                    return false;
                 }
             }
-            if (isSorted){
-                return true;
-            }
-
-
         }
-        return false;
-
         
+        if (nums[0] >= nums[nums.length -1]){
+            int break1 = 0;
+            for ( int i = 1; i < nums.length; i++){
+                if ( nums[i-1] > nums[i]){
+                    break1++;
+                    if (break1 > 1){
+                        return false;
+                    }
+                    
+                }
+                
+            }
+            return true;
+        }
+        return true;
     }
 }
