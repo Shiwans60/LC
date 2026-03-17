@@ -1,13 +1,20 @@
 class Solution {
+    //Boyer Moore Algorithim
     public int majorityElement(int[] nums) {
-        HashMap<Integer , Integer> h = new HashMap<>();
-        for (int i= 0; i < nums.length ; i++){
-            h.put(nums[i], h.getOrDefault(nums[i],0)+1);
-            if(h.containsKey(nums[i]) && h.get(nums[i]) > nums.length/2){
-                return nums[i];    
+        int count = 0;
+        int candidate = 0;
+        for (int i : nums){
+            if (i == candidate){
+                count++;
+            }
+            else if(count == 0){
+                candidate = i;
+                count = 1;
+            }
+            else{
+                count--;
             }
         }
-        return 0;
-        
+        return candidate;
     }
 }
