@@ -1,22 +1,23 @@
 class Solution {
     public int search(int[] nums, int target) {
-        int low = 0;
-        int high = nums.length -1 ;
-        return recc(nums, high, low , target);
+        int l = 0;
+        int r = nums.length - 1;
+        return solve(nums, l , r, target);
         
     }
-    public int recc( int nums[] ,int high ,int low,int target ){
-        if(low > high){
+    private int solve(int[] nums, int l , int r, int target){
+        if(l >
+         r){
             return -1;
         }
-        int mid = low + (high - low)/2;
-        if ( nums[mid] == target){
-            return mid;
+        int mid = l + (r - l)/2;
+        if(nums[mid] == target) return mid;
+        if(target < nums[mid]){
+            return solve(nums, l , mid -1 , target);
         }
-        if (target > nums[mid] ){
-            return recc(nums, high, mid + 1,target);
+        else{
+            return solve(nums, mid + 1, r, target);
         }
-        return recc(nums, mid-1, low, target);
         
     }
 }
