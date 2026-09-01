@@ -19,8 +19,7 @@ class Solution {
         for(int i = 0; i < inorder.length; i++){
             h.put(inorder[i], i);
         }
-        TreeNode root = build(preorder,0,preorder.length - 1,inorder, 0, inorder.length - 1, h);
-        return root;
+        return build(preorder,0,preorder.length - 1,inorder, 0, inorder.length - 1, h);
     }
     private TreeNode build(int[] preorder,int pres,int pree,int[] inorder,int ins,int ine,HashMap<Integer,Integer> h){
         if(pres > pree || ins > ine) return null;
