@@ -16,7 +16,7 @@ class Solution {
         TreeNode rightn = lowestCommonAncestor(root.right, p, q);
 
         if(leftn != null && rightn != null) return root;
-        if(leftn != null) return leftn;
+        if(leftn != null && rightn == null) return leftn;
         return rightn;   
     }
 }
