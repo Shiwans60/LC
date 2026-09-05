@@ -1,52 +1,22 @@
 class Solution {
+    int strt = 0;
+    int e = 0;
     public String longestPalindrome(String s) {
-        int maxl =0;
-        int start = 0;  
-        if(s.length() == 1){
-            return s.substring(0);
+        for(int i = 0 ; i < s.length(); i++){
+            solve(s , i , i);
+            solve(s , i , i+ 1);
         }
-        for(int i = 0; i < s.length() ; i++){
-            int h = i + 1;
-            int l = i - 1;
-            
-            while(l >= 0 && h <= s.length()-1 && s.charAt(h) == s.charAt(l) ){
-                    h++;
-                    l--;
+        return s.substring( strt, e + 1);
+    }
+    private void solve(String s, int l , int r){
+        while(l >= 0 && r < s.length() && s.charAt(l) == s.charAt(r)){
+            if(r - l + 1 > e - strt  + 1){
+                strt = l;
+                e = r;
             }
-            int len = h - l - 1;
-            if (len > maxl){
-                maxl = len;
-                start = l+ 1;
-            }                                
-            
-            l = i;
-            h = i+ 1;
-            while(h <= s.length() - 1 && l >= 0 && s.charAt(h) == s.charAt(l) ){
-                    h++;
-                    l--;
-            }
-            len = h - l - 1;
-            if (len > maxl){
-                maxl = len;
-                start = l+ 1;
-            }
-            // else if (i > 0 && s.charAt(i) == s.charAt(l) ){
-            //     h = i;
-            //     while(h <= s.length() - 1 && l >= 0 && s.charAt(h) == s.charAt(l) ){
-            //         h++;
-            //         l--;
-            //     }
-            // }
-            // else {
-            //     l = i - 1;
-            //     h = i + 1;
-            // }
-            // int len = h - l - 1;
-            // if (len > maxl){
-            //     maxl = len;
-            //     start = l+ 1;
-            // }
+            r++;
+            l--;
         }
-        return s.substring(start, start + maxl);
+        
     }
 }
