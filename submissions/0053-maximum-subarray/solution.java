@@ -8,11 +8,8 @@ class Solution {
             if (currsum < 0){
                 currsum = 0;
             }
-
-
         }
-        return maxsum;
-        
+        return maxsum;        
     }
 
 }
