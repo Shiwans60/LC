@@ -8,8 +8,6 @@ class Solution {
             mini = Math.min(mini, nums[i]);
             
             profit = Math.max(diff, profit);
-            
-
         }
         
         return profit;
