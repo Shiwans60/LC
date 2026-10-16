@@ -21,7 +21,6 @@ class Solution {
             }
         }
         return true;
-    
     }
     private boolean dfs(List<List<Integer>> adj, int src ,boolean[] vis, boolean[] path){
         vis[src] = true;
