@@ -12,7 +12,6 @@
 class Solution {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         return add(l1,l2,0);
-        
     }
     public ListNode add(ListNode l1, ListNode l2, int carry){
         if(l1 == null && l2 == null && carry == 0){
@@ -50,8 +49,7 @@ class Solution {
             next2 = null;
         }
         nnode.next = add(next1 ,next2, ncarry);
-        return nnode;
-        
+        return nnode;   
     }
     
 }
